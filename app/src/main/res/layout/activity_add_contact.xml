@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="Connect with Trusted Contact"
+            app:titleTextColor="@color/surface_light" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/addContactTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            app:tabIndicatorColor="@color/surface_light"
+            app:tabIndicatorHeight="3dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/surface_light"
+            app:tabTextColor="#B3FFFFFF">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Invite Code" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Code" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- SECTION 1: Connect by Invite Code -->
+            <LinearLayout
+                android:id="@+id/sectionInviteCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Invitation Code"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Ask your friend or family member for their SafeTrack invite code (e.g. ST-123456)."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCodeInput"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Invitation Code (e.g. ST-123456)"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCodeInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:letterSpacing="0.1"
+                        android:maxLength="10" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLookupCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Find Contact"
+                    app:cornerRadius="10dp" />
+            </LinearLayout>
+
+            <!-- SECTION 2: Connect by Mobile Number -->
+            <LinearLayout
+                android:id="@+id/sectionMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Find Contact by Mobile Number"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Enter the verified 10-digit mobile number of a registered SafeTrack user."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPhoneInput"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Mobile Number"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:prefixText="+91 ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPhoneInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="10" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLookupPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Search Contact"
+                    app:cornerRadius="10dp" />
+            </LinearLayout>
+
+            <!-- SECTION 3: My Invitation Code & Sharing -->
+            <LinearLayout
+                android:id="@+id/sectionMyCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Invitation Code"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Share this code with family or friends. When they enter it, you will receive a connection request to approve."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="1.5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/tvMyShareCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ST-123456"
+                            android:textColor="@color/primary"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCodeExpiresAt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Valid for 48 hours"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnRegenerateCode"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:text="Regenerate"
+                                app:cornerRadius="8dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnShareSheet"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="1"
+                                android:text="Share Code"
+                                app:cornerRadius="8dp"
+                                app:icon="@drawable/ic_share" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Loading Progress -->
+            <ProgressBar
+                android:id="@+id/lookupProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:indeterminateTint="@color/primary"
+                android:visibility="gone" />
+
+            <!-- TARGET USER PREVIEW CARD (Visible after finding user) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTargetPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:visibility="gone"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="3dp"
+                app:strokeColor="@color/safety_green"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Found"
+                        android:textColor="@color/safety_green"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvPreviewName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Contact Name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvPreviewRole"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Role: Location Sharing User"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvPreviewExpiry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Invitation Status: Active"
+                        android:textColor="@color/safety_green"
+                        android:textSize="12sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConfirmSendRequest"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="@color/safety_green"
+                        android:text="Send Connection Request"
+                        android:textSize="15sp"
+                        app:cornerRadius="10dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

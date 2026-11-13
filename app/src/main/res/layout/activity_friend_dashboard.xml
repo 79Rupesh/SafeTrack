@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:title="@string/friend_dashboard_title"
+            app:titleTextColor="@color/surface_light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Status Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSharingStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/safety_green"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivStatusDot"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_check"
+                            app:tint="@color/safety_green" />
+
+                        <TextView
+                            android:id="@+id/tvSharingStatus"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/sharing_status_active"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvGpsStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="GPS Status: Checking hardware fix..."
+                        android:textColor="@color/primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvLastLocationUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Last Update: Not yet recorded"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvLocationAccuracy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Accuracy: --"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvUploadStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Firebase Upload: Not uploaded yet"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvInternetStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Internet: Checking connectivity..."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <!-- Battery Guidance Link -->
+                    <TextView
+                        android:id="@+id/btnBatteryGuide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="⚡ Battery &amp; Background Optimization Guide"
+                        android:textColor="@color/primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <!-- Sharing Control Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTogglePause"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:text="@string/btn_pause_sharing"
+                            android:textSize="13sp"
+                            app:cornerRadius="8dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnStopSharing"
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/safety_red"
+                            android:text="@string/btn_stop_sharing"
+                            android:textSize="13sp"
+                            app:cornerRadius="8dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnStartSharing"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/safety_green"
+                        android:text="@string/btn_start_sharing"
+                        android:visibility="gone"
+                        app:cornerRadius="8dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Prominent SOS Button Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/safety_red_light"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/safety_red"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <!-- Big Circular SOS Trigger -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSos"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/bg_sos_button"
+                        android:text="SOS"
+                        android:textColor="@color/surface_light"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/sos_help_text"
+                        android:textColor="@color/safety_red_dark"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCall112"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/call_police_112"
+                        android:textColor="@color/safety_red"
+                        app:icon="@drawable/ic_phone"
+                        app:iconTint="@color/safety_red" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Trusted Contacts Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvContactsTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Trusted Contacts (0)"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShareCode"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invite"
+                    app:icon="@drawable/ic_share" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvMyInviteCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Your Invite Code: ST-XXXXXX"
+                android:textColor="@color/primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Empty contacts placeholder -->
+            <TextView
+                android:id="@+id/tvEmptyContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/no_contacts_yet"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

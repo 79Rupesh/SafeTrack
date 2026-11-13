@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="Edit Profile"
+            app:titleTextColor="@color/surface_light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Read-only Verified Phone Number -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvEditPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="+91 XXXXXXXXXX (Verified)"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Full Name Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEditName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Full Name"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEditName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLength="40" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Primary Emergency Contact Phone Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEditEmergencyPhone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Primary Emergency Contact (For SOS SMS)"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:helperText="Mobile number to receive offline emergency SMS">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEditEmergencyPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="15" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Role Selector -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Active App Role"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rgEditRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <RadioButton
+                    android:id="@+id/rbEditFriend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location Sharing User (Friend Mode)" />
+
+                <RadioButton
+                    android:id="@+id/rbEditViewer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Trusted Contact User (Viewer Mode)" />
+
+                <RadioButton
+                    android:id="@+id/rbEditBoth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Both (Share &amp; View)" />
+            </RadioGroup>
+
+            <!-- Invite Code display -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your SafeTrack Invite Code"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvEditInviteCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="ST-XXXXXX"
+                        android:textColor="@color/primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <ProgressBar
+                android:id="@+id/progressBarEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:indeterminateTint="@color/primary"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveEditedProfile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="24dp"
+                android:text="Update Profile"
+                android:textSize="16sp"
+                app:cornerRadius="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

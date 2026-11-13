@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Primary Colors (Safety Indigo / Magenta / Alert Red) -->
+    <color name="primary">#6200EE</color>
+    <color name="primary_variant">#3700B3</color>
+    <color name="primary_light">#EDE7F6</color>
+    <color name="secondary">#03DAC6</color>
+    <color name="secondary_variant">#018786</color>
+
+    <!-- Safety / Status Colors -->
+    <color name="safety_red">#D32F2F</color>
+    <color name="safety_red_dark">#B71C1C</color>
+    <color name="safety_red_light">#FFEBEE</color>
+    <color name="safety_green">#2E7D32</color>
+    <color name="safety_green_light">#E8F5E9</color>
+    <color name="safety_amber">#ED6C02</color>
+    <color name="safety_amber_light">#FFF4E5</color>
+
+    <!-- Neutral Background & Surface -->
+    <color name="background_light">#F8F9FA</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <color name="text_primary">#1C1B1F</color>
+    <color name="text_secondary">#49454F</color>
+    <color name="text_hint">#79747E</color>
+    <color name="divider_color">#E0E0E0</color>
+    <color name="divider">#E0E0E0</color>
+
+    <!-- Dark Mode Neutral -->
+    <color name="background_dark">#121212</color>
+    <color name="surface_dark">#1E1E1E</color>
+    <color name="text_primary_dark">#E6E1E5</color>
+    <color name="text_secondary_dark">#CAC4D0</color>
+</resources>

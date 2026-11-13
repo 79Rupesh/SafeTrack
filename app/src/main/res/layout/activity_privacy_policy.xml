@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="@string/privacy_title"
+            app:titleTextColor="@color/surface_light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SafeTrack Privacy &amp; Consent Charter"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="4dp"
+                android:text="SafeTrack is strictly designed as a transparent, consent-first personal safety and mutual location-sharing platform. We hold user trust and individual privacy as inviolable principles."
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <!-- Core Principles -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="1. Zero Secret Tracking Policy"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="4dp"
+                android:text="SafeTrack will never conceal its operation. Whenever location sharing is activated, a persistent, un-dismissible foreground notification is displayed on your device. Android OS location indicators will always be visible."
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="2. Mutual Mutual Consent &amp; Pairing"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="4dp"
+                android:text="Nobody can track you solely using your phone number. Tracking is impossible until an invitation code is shared and you explicitly approve the connection request inside your application."
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="3. Revocation at Any Second"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="4dp"
+                android:text="You retain total ownership over your data. With one tap on 'Stop Sharing' or by deleting a contact from your trusted circle, their access to your live coordinates is terminated immediately."
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="4. Data Minimization &amp; Retention"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="4dp"
+                android:text="We only store minimum necessary coordinates to power live safety maps and SOS alerts. You can clear your local offline location history at any time from the Location History screen."
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClosePrivacy"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:text="I Understand &amp; Agree"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

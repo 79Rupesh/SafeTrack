@@ -1,0 +1,12 @@
+## This file should NOT be checked into Version Control Systems,
+# as it contains information specific to your local configuration.
+#
+# Location of the SDK. This is only used by Gradle.
+# For Windows:
+sdk.dir=C\:\\Users\\hp\\AppData\\Local\\Android\\Sdk
+
+# For Linux/Mac:
+# sdk.dir=/Users/username/Library/Android/sdk
+
+# Optional Google Maps API key override:
+# MAPS_API_KEY=AIzaSyYourActualApiKeyHere

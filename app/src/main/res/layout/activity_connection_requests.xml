@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="Trusted Contacts &amp; Requests"
+            app:titleTextColor="@color/surface_light" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            app:tabIndicatorColor="@color/surface_light"
+            app:tabIndicatorHeight="3dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/surface_light"
+            app:tabTextColor="#B3FFFFFF">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Incoming (0)" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sent (0)" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contacts (0)" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- 1. Incoming Requests Section -->
+        <LinearLayout
+            android:id="@+id/layoutIncoming"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvEmptyIncoming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:text="No incoming connection requests."
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIncomingRequests"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <!-- 2. Sent Requests Section -->
+        <LinearLayout
+            android:id="@+id/layoutSent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvEmptySent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:text="No pending sent requests."
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSentRequests"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <!-- 3. Approved Contacts Section -->
+        <LinearLayout
+            android:id="@+id/layoutApproved"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvEmptyApproved"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:text="No approved trusted contacts yet."
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvApprovedContacts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- FAB to Add New Contact -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabAddContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/primary"
+        android:text="Add Contact"
+        android:textColor="@color/surface_light"
+        app:icon="@drawable/ic_share"
+        app:iconTint="@color/surface_light" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

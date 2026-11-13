@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SafeTrack</string>
+    <string name="app_tagline">Consent-Based Women Safety &amp; Live Location Protection</string>
+
+    <!-- Splash & Welcome -->
+    <string name="welcome_title">Welcome to SafeTrack</string>
+    <string name="welcome_subtitle">Empowering your safety with real-time, privacy-first background location sharing with trusted contacts.</string>
+    <string name="get_started">Get Started</string>
+    <string name="choose_mode_title">How will you use SafeTrack?</string>
+    <string name="mode_friend_title">I want to Share My Location</string>
+    <string name="mode_friend_desc">For individuals who want to share their real-time location with approved trusted family and friends for safety.</string>
+    <string name="mode_viewer_title">I am a Trusted Contact / Guardian</string>
+    <string name="mode_viewer_desc">For parents, guardians, or friends who will view the shared location with approved mutual consent.</string>
+
+    <!-- Auth -->
+    <string name="auth_title">Mobile Verification</string>
+    <string name="auth_subtitle">Enter your phone number to sign in or register securely.</string>
+    <string name="phone_number_hint">Phone Number (10 digits)</string>
+    <string name="send_otp">Send Verification Code</string>
+    <string name="otp_title">Verify Code</string>
+    <string name="otp_subtitle">Enter the 6-digit verification code sent to your phone number.</string>
+    <string name="otp_hint">6-Digit OTP</string>
+    <string name="verify_otp">Verify &amp; Continue</string>
+    <string name="resend_otp">Resend Code</string>
+    <string name="quick_test_login">Quick Test Verification (Demo)</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profile Setup</string>
+    <string name="profile_subtitle">Tell us your name so your trusted circle can identify you.</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="emergency_contact_phone_hint">Primary Emergency Contact Number</string>
+    <string name="save_profile">Save Profile</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">Required Permissions</string>
+    <string name="permissions_subtitle">SafeTrack needs these permissions strictly for transparent safety and background location sharing.</string>
+    <string name="permission_fine_location_title">Precise Location Access</string>
+    <string name="permission_fine_location_desc">Used to determine your live coordinates accurately when sharing is active.</string>
+    <string name="permission_background_location_title">Background Location Access (Allow all the time)</string>
+    <string name="permission_background_location_desc">Required so SafeTrack can keep sharing your location even after you lock the phone or close the app.</string>
+    <string name="permission_notification_title">Persistent Safety Notification</string>
+    <string name="permission_notification_desc">Keeps you fully aware that location sharing is running and lets you stop or pause it with 1-tap.</string>
+    <string name="permission_battery_title">Battery Optimization Exemption</string>
+    <string name="permission_battery_desc">Prevents Android from stopping your safety service unexpectedly during critical moments.</string>
+    <string name="grant_permissions">Grant &amp; Continue</string>
+    <string name="all_permissions_granted">All Essential Permissions Granted</string>
+
+    <!-- Friend Dashboard -->
+    <string name="friend_dashboard_title">SafeTrack Protection</string>
+    <string name="sharing_status_active">Location Sharing: ACTIVE</string>
+    <string name="sharing_status_paused">Location Sharing: PAUSED</string>
+    <string name="sharing_status_stopped">Location Sharing: STOPPED</string>
+    <string name="last_update_format">Last Update: %1$s</string>
+    <string name="accuracy_format">Accuracy: ±%1$.1f meters</string>
+    <string name="btn_start_sharing">Start Location Sharing</string>
+    <string name="btn_pause_sharing">Pause Sharing</string>
+    <string name="btn_resume_sharing">Resume Sharing</string>
+    <string name="btn_stop_sharing">Stop Sharing</string>
+    <string name="connected_contacts_count">Approved Trusted Contacts: %1$d</string>
+    <string name="no_contacts_yet">No trusted contacts added yet. Tap below to share your invite code.</string>
+    <string name="share_invite_code">Share My Invite Code</string>
+    <string name="your_invite_code_label">Your SafeTrack Invite Code:</string>
+    <string name="sos_button">EMERGENCY SOS</string>
+    <string name="sos_help_text">Press and hold for 2 seconds to alert contacts</string>
+
+    <!-- Viewer Dashboard -->
+    <string name="viewer_dashboard_title">Trusted Circle View</string>
+    <string name="add_friend_btn">Connect with Friend</string>
+    <string name="friends_sharing_with_you">Sharing With You</string>
+    <string name="no_friends_connected">You haven\'t connected to any friends yet.</string>
+    <string name="enter_friend_code">Enter Friend\'s Invite Code</string>
+    <string name="connection_requests">Connection Requests (%1$d)</string>
+
+    <!-- Google Maps Screen -->
+    <string name="map_title">Friend Live Location</string>
+    <string name="status_live">● LIVE</string>
+    <string name="status_last_known">● LAST KNOWN</string>
+    <string name="status_offline">● OFFLINE</string>
+    <string name="btn_refresh_location">Refresh</string>
+    <string name="btn_directions">Get Directions</string>
+    <string name="maps_api_key_missing_msg">Google Maps API key is not configured. Please add your key in app/build.gradle.kts or AndroidManifest.xml.</string>
+
+    <!-- SOS -->
+    <string name="sos_alert_title">EMERGENCY SOS ACTIVATED</string>
+    <string name="sos_alert_desc">Your live coordinates have been dispatched to your trusted contacts and emergency records.</string>
+    <string name="call_police_112">Call Emergency (112)</string>
+    <string name="cancel_sos">Cancel SOS Alert</string>
+
+    <!-- Notification Service -->
+    <string name="notification_channel_id">safetrack_location_channel</string>
+    <string name="notification_channel_name">SafeTrack Location Sharing</string>
+    <string name="notification_channel_desc">Active persistent notification indicating that background location sharing is enabled.</string>
+    <string name="notification_sos_channel_id">safetrack_sos_channel</string>
+    <string name="notification_sos_channel_name">SafeTrack Emergency Alerts</string>
+    <string name="notification_title_active">SafeTrack – Location Sharing Active</string>
+    <string name="notification_body_active">Your location is currently being shared with your approved trusted contacts.</string>
+    <string name="notification_title_paused">SafeTrack – Location Sharing Paused</string>
+    <string name="notification_body_paused">Location sharing is paused. Tap resume to resume sharing.</string>
+    <string name="notification_action_stop">Stop Sharing</string>
+    <string name="notification_action_pause">Pause Sharing</string>
+    <string name="notification_action_resume">Resume Sharing</string>
+    <string name="notification_boot_title">SafeTrack – Device Restarted</string>
+    <string name="notification_boot_body">You were actively sharing your location before restart. Tap to resume location sharing.</string>
+
+    <!-- Battery Optimization Guidance -->
+    <string name="battery_optimization_page_title">Battery &amp; Background Guide</string>
+    <string name="battery_optimization_status_exempt">Background Optimization: Unrestricted (Recommended)</string>
+    <string name="battery_optimization_status_restricted">Background Optimization: Restricted by Android</string>
+    <string name="battery_optimization_request_btn">Allow Unrestricted Background Activity</string>
+    <string name="battery_optimization_open_settings_btn">Open Device Battery Settings</string>
+
+    <!-- Settings & Privacy -->
+    <string name="settings_title">Settings</string>
+    <string name="privacy_title">Privacy Policy &amp; Security</string>
+    <string name="location_history_title">Location History (Offline Queue)</string>
+    <string name="clear_history">Clear Stored History</string>
+    <string name="revoke_access">Revoke Contact Access</string>
+    <string name="battery_optimization_title">Battery Optimization Settings</string>
+    <string name="battery_optimization_desc">Ensure SafeTrack is exempt from battery saver to guarantee continuous protection.</string>
+    <string name="logout">Sign Out</string>
+</resources>

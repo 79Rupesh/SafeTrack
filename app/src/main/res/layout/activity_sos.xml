@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/safety_red_light">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/safety_red"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="Emergency Assistance"
+            app:titleTextColor="@color/surface_light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/tvSosStatusHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="EMERGENCY DISTRESS SYSTEM"
+            android:textColor="@color/safety_red_dark"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSosStatusDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Press and hold the red button below for 2 seconds to dispatch immediate emergency distress signals to your trusted contacts."
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Circular Big Hold-to-SOS Button -->
+        <FrameLayout
+            android:layout_width="220dp"
+            android:layout_height="220dp">
+
+            <ProgressBar
+                android:id="@+id/progressHold"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/bg_sos_button"
+                android:visibility="invisible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSosHold"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_sos_button"
+                android:text="HOLD FOR\nSOS"
+                android:textColor="@color/surface_light"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvCountdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Hold button for 2 seconds"
+            android:textColor="@color/safety_red_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 112 Call Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDirect112Call"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/safety_red"
+            android:text="@string/call_police_112"
+            android:textSize="16sp"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_phone"
+            app:iconGravity="textStart" />
+
+        <!-- Offline Emergency SMS Fallback Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSendOfflineSms"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:text="Send Emergency SMS (Offline Fallback)"
+            android:textColor="@color/safety_red_dark"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/safety_red" />
+
+        <!-- Cancel SOS Button (shown when SOS active) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelSos"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/safety_green"
+            android:text="I AM SAFE NOW (Cancel SOS Alert)"
+            android:textColor="@color/surface_light"
+            android:visibility="gone"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

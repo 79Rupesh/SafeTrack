@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <ImageView
+        android:id="@+id/ivErrorIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_close"
+        app:tint="@color/safety_red" />
+
+    <TextView
+        android:id="@+id/tvErrorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Authentication Error"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:text="We could not complete your authentication request. Please verify your internet connection and try again."
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRetryAuth"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:text="Try Again"
+        app:cornerRadius="10dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBackToLogin"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Return to Phone Entry" />
+
+</LinearLayout>

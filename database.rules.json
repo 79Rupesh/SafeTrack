@@ -1,0 +1,84 @@
+{
+  "rules": {
+    "users": {
+      "$userId": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid == $userId",
+        ".validate": "newData.hasChildren(['uid', 'phoneNumber', 'name', 'role'])"
+      }
+    },
+    "invitations": {
+      ".read": "auth != null",
+      "$inviteCode": {
+        ".write": "auth != null && (!data.exists() || data.child('ownerUid').val() == auth.uid)",
+        ".validate": "newData.hasChildren(['code', 'ownerUid', 'ownerName'])"
+      }
+    },
+    "userInvitations": {
+      "$userId": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid == $userId"
+      }
+    },
+    "phoneIndex": {
+      ".read": "auth != null",
+      "$cleanPhone": {
+        ".write": "auth != null && (!data.exists() || data.val() == auth.uid)"
+      }
+    },
+    "connectionRequests": {
+      ".read": "auth != null",
+      "$requestId": {
+        ".write": "auth != null && (!data.exists() && newData.child('senderUid').val() == auth.uid || data.exists() && (data.child('receiverUid').val() == auth.uid || data.child('senderUid').val() == auth.uid))",
+        ".validate": "newData.hasChildren(['requestId', 'senderUid', 'receiverUid', 'status'])"
+      }
+    },
+    "incomingRequests": {
+      "$receiverUid": {
+        ".read": "auth != null && auth.uid == $receiverUid",
+        ".write": "auth != null"
+      }
+    },
+    "outgoingRequests": {
+      "$senderUid": {
+        ".read": "auth != null && auth.uid == $senderUid",
+        ".write": "auth != null"
+      }
+    },
+    "connections": {
+      "$ownerUid": {
+        ".read": "auth != null && (auth.uid == $ownerUid || data.child(auth.uid).exists())",
+        "$contactUserId": {
+          ".write": "auth != null && (auth.uid == $ownerUid || auth.uid == $contactUserId)",
+          ".validate": "newData.hasChildren(['contactUserId', 'status'])"
+        }
+      }
+    },
+    "locations": {
+      "$userId": {
+        ".read": "auth != null && (auth.uid == $userId || root.child('connections').child($userId).child(auth.uid).child('status').val() == 'APPROVED')",
+        ".write": "auth != null && auth.uid == $userId",
+        ".validate": "newData.hasChildren(['userId', 'latitude', 'longitude', 'timestamp', 'sharingStatus'])"
+      }
+    },
+    "locationHistory": {
+      "$userId": {
+        ".read": "auth != null && (auth.uid == $userId || root.child('connections').child($userId).child(auth.uid).child('status').val() == 'APPROVED')",
+        ".write": "auth != null && auth.uid == $userId"
+      }
+    },
+    "sosAlerts": {
+      ".read": "auth != null",
+      "$alertId": {
+        ".write": "auth != null && (data.val() == null || data.child('senderId').val() == auth.uid)",
+        ".validate": "newData.hasChildren(['alertId', 'senderId', 'latitude', 'longitude', 'status'])"
+      }
+    },
+    "activeSos": {
+      ".read": "auth != null",
+      "$userId": {
+        ".write": "auth != null && (auth.uid == $userId || data.child('senderId').val() == auth.uid)"
+      }
+    }
+  }
+}

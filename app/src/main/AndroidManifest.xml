@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Network permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Location permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Android 10 (API 29)+ background location -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Foreground Service permissions -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Android 14 (API 34)+ location foreground service type -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+    <!-- Notification permission for Android 13 (API 33)+ -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Wake lock to ensure service can transmit during active sharing -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Device reboot receiver to restore authorized sharing -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Emergency call permission / dialing intent -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- Battery optimization exemption request -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <application
+        android:name=".SafeTrackApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher_foreground"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SafeTrack"
+        tools:targetApi="34">
+
+        <!-- Google Maps API Key placeholder from build.gradle / manifestPlaceholders -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <!-- 1. Splash Screen (Entry Launcher) -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SafeTrack.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 2. Welcome Screen -->
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:exported="false" />
+
+        <!-- 3. Auth (Phone registration / Login) -->
+        <activity
+            android:name=".auth.AuthActivity"
+            android:exported="false" />
+
+        <!-- 4. OTP Verification -->
+        <activity
+            android:name=".auth.OtpVerificationActivity"
+            android:exported="false" />
+
+        <!-- 4b. Role Selection -->
+        <activity
+            android:name=".auth.RoleSelectionActivity"
+            android:exported="false" />
+
+        <!-- 5. Profile Setup -->
+        <activity
+            android:name=".auth.ProfileSetupActivity"
+            android:exported="false" />
+
+        <!-- 5b. Edit Profile -->
+        <activity
+            android:name=".auth.EditProfileActivity"
+            android:exported="false" />
+
+        <!-- Auth Support Screens -->
+        <activity
+            android:name=".auth.AuthLoadingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".auth.AuthErrorActivity"
+            android:exported="false" />
+
+        <!-- 6. Permission Setup -->
+        <activity
+            android:name=".ui.PermissionSetupActivity"
+            android:exported="false" />
+
+        <!-- 7. Friend Mode Dashboard -->
+        <activity
+            android:name=".dashboard.FriendDashboardActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+
+        <!-- 8. Viewer Mode Dashboard -->
+        <activity
+            android:name=".dashboard.ViewerDashboardActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+
+        <!-- 9. Google Maps Location Screen -->
+        <activity
+            android:name=".maps.GoogleMapsActivity"
+            android:exported="false" />
+
+        <!-- 10. Add Trusted Contact Screen -->
+        <activity
+            android:name=".contacts.AddContactActivity"
+            android:exported="false" />
+
+        <!-- 11. Connection Requests Screen -->
+        <activity
+            android:name=".contacts.ConnectionRequestsActivity"
+            android:exported="false" />
+
+        <!-- 12. SOS Screen -->
+        <activity
+            android:name=".sos.SosActivity"
+            android:exported="false" />
+
+        <!-- 13. Location History Screen -->
+        <activity
+            android:name=".location.LocationHistoryActivity"
+            android:exported="false" />
+
+        <!-- 14. Settings Screen -->
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false" />
+
+        <!-- 15. Privacy Policy & Permissions Screen -->
+        <activity
+            android:name=".ui.PrivacyPolicyActivity"
+            android:exported="false" />
+
+        <!-- 16. Battery & Background Optimization Guidance Screen -->
+        <activity
+            android:name=".ui.BatteryOptimizationActivity"
+            android:exported="false" />
+
+        <!-- Background Location Foreground Service (Targeted for API 34 location type) -->
+        <service
+            android:name=".tracking.LocationTrackingService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- Broadcast Receiver for Notification Stop Action -->
+        <receiver
+            android:name=".tracking.ServiceStopActionReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.safetrack.ACTION_STOP_SHARING" />
+                <action android:name="com.safetrack.ACTION_PAUSE_SHARING" />
+                <action android:name="com.safetrack.ACTION_RESUME_SHARING" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Broadcast Receiver for Device Reboot -->
+        <receiver
+            android:name=".tracking.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Firebase Cloud Messaging Receiver -->
+        <service
+            android:name=".notifications.SafeTrackMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
