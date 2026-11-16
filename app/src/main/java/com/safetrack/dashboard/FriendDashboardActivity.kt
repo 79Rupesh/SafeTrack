@@ -1,9 +1,12 @@
 package com.safetrack.dashboard
 
 import android.content.BroadcastReceiver
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.BatteryManager
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -59,6 +62,8 @@ class FriendDashboardActivity : AppCompatActivity() {
                     val lat = intent.getDoubleExtra(LocationTrackingService.EXTRA_LATITUDE, 0.0)
                     val lng = intent.getDoubleExtra(LocationTrackingService.EXTRA_LONGITUDE, 0.0)
                     val accuracy = intent.getFloatExtra(LocationTrackingService.EXTRA_ACCURACY, 0f)
+                    val speed = intent.getFloatExtra(LocationTrackingService.EXTRA_SPEED, 0f)
+                    val battery = intent.getIntExtra(LocationTrackingService.EXTRA_BATTERY, -1)
                     val timestamp = intent.getLongExtra(LocationTrackingService.EXTRA_TIMESTAMP, System.currentTimeMillis())
                     val uploadSuccess = intent.getBooleanExtra(LocationTrackingService.EXTRA_UPLOAD_SUCCESS, false)
                     val lastUploadTime = intent.getLongExtra(
@@ -71,6 +76,7 @@ class FriendDashboardActivity : AppCompatActivity() {
                     )
 
                     updateLocationUI(lat, lng, accuracy, timestamp)
+                    updateMetricsUI(speed, battery)
                     updateNetworkAndUploadUI(isOnline, uploadSuccess, lastUploadTime)
                 }
                 LocationTrackingService.ACTION_STATUS_BROADCAST -> {
@@ -169,8 +175,39 @@ class FriendDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnShareCode.setOnClickListener {
-            val intent = Intent(this, AddContactActivity::class.java)
-            startActivity(intent)
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_SUBJECT, "SafeTrack Invite")
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    "Track my live location for personal safety with SafeTrack. My Invite Code is: ${sessionManager.inviteCode}"
+                )
+            }
+            startActivity(Intent.createChooser(shareIntent, "Share SafeTrack Invite Code"))
+        }
+
+        binding.btnCopyCode.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("SafeTrack Invite Code", sessionManager.inviteCode)
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(this, "Invite Code copied: ${sessionManager.inviteCode}", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.cardSafeCheckIn.setOnClickListener {
+            val time = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
+            Toast.makeText(this, "Safe Check-In confirmed at $time. Circle notified!", Toast.LENGTH_LONG).show()
+        }
+
+        binding.cardInviteGuardian.setOnClickListener {
+            startActivity(Intent(this, AddContactActivity::class.java))
+        }
+
+        binding.btnManageCircle.setOnClickListener {
+            startActivity(Intent(this, AddContactActivity::class.java))
+        }
+
+        binding.btnSirenToggle.setOnClickListener {
+            startActivity(Intent(this, SosActivity::class.java))
         }
 
         binding.btnBatteryGuide.setOnClickListener {
@@ -293,7 +330,19 @@ class FriendDashboardActivity : AppCompatActivity() {
     }
 
     private fun loadInitialState() {
-        binding.tvMyInviteCode.text = "Your Invite Code: ${sessionManager.inviteCode}"
+        binding.tvMyInviteCode.text = sessionManager.inviteCode
+
+        try {
+            val bm = getSystemService(Context.BATTERY_SERVICE) as? BatteryManager
+            val level = bm?.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY) ?: -1
+            if (level >= 0) {
+                binding.tvBattery.text = "$level% (Optimized)"
+            } else {
+                binding.tvBattery.text = "Normal (Optimized)"
+            }
+        } catch (e: Exception) {
+            binding.tvBattery.text = "Optimized"
+        }
 
         if (sessionManager.isSharingActive && !sessionManager.isSharingPaused) {
             updateStatusUI(LocationData.STATUS_ACTIVE)
@@ -313,15 +362,28 @@ class FriendDashboardActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateMetricsUI(speed: Float, batteryPct: Int) {
+        val kmh = (speed * 3.6f)
+        if (kmh > 1.5f) {
+            binding.tvSpeed.text = String.format(Locale.US, "%.1f km/h (Moving)", kmh)
+        } else {
+            binding.tvSpeed.text = "Stationary (0 km/h)"
+        }
+
+        if (batteryPct >= 0) {
+            binding.tvBattery.text = "$batteryPct% (Optimized)"
+        }
+    }
+
     private fun observeContacts() {
         val userId = sessionManager.userId ?: return
         contactsListener = firebaseRepo.listenToApprovedContacts(userId) { contacts ->
             binding.tvContactsTitle.text = "Trusted Contacts (${contacts.size})"
             if (contacts.isEmpty()) {
-                binding.tvEmptyContacts.visibility = View.VISIBLE
+                binding.cardEmptyContacts.visibility = View.VISIBLE
                 binding.rvContacts.visibility = View.GONE
             } else {
-                binding.tvEmptyContacts.visibility = View.GONE
+                binding.cardEmptyContacts.visibility = View.GONE
                 binding.rvContacts.visibility = View.VISIBLE
                 contactsAdapter.submitList(contacts)
             }

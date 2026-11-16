@@ -29,6 +29,13 @@
     <!-- Emergency call permission / dialing intent -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <!-- Vibration for emergency SOS and distress alarms -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Camera flashlight strobe for emergency SOS -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+
     <!-- Battery optimization exemption request -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 

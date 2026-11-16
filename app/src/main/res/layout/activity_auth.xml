@@ -10,22 +10,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="24dp"
+        android:paddingTop="36dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="28dp">
 
-        <ImageView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/ic_shield"
-            app:tint="@color/primary" />
+        <!-- Shield Icon with soft background -->
+        <FrameLayout
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center_horizontal">
+
+            <View
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/bg_sos_ring_outer"
+                android:backgroundTint="#154F46E5" />
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_shield_check"
+                app:tint="@color/primary" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="SafeTrack Verification"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.01"
+            android:text="SafeTrack Access"
             android:textColor="@color/text_primary"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -34,122 +50,156 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
+            android:lineSpacingExtra="2dp"
             android:text="Enter your mobile number to receive a secure one-time SMS verification code."
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
-        <!-- Country Code and Phone Number Box -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:hint="Mobile Number"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:helperText="Default country code is +91 (India)"
-            app:prefixText="+91 "
-            app:prefixTextColor="@color/primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:letterSpacing="0.05"
-                android:maxLength="10"
-                android:textSize="18sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Loading Indicator -->
-        <LinearLayout
-            android:id="@+id/layoutLoading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ProgressBar
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:indeterminateTint="@color/primary" />
-
-            <TextView
-                android:id="@+id/tvLoadingMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="Contacting Firebase verification servers..."
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <!-- Send OTP Action Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSendOtp"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="28dp"
-            android:text="Get Verification Code"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:lineSpacingExtra="3dp"
-            android:text="SafeTrack never shares your mobile number. It is used strictly for authentication and safety pairing."
-            android:textColor="@color/text_hint"
-            android:textSize="12sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <!-- Development Test Button -->
+        <!-- Security Card Box -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="12dp"
-            app:cardBackgroundColor="@color/primary_light"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp">
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/card_stroke"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPhone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Testing &amp; Development Note"
-                    android:textColor="@color/primary_variant"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:hint="Mobile Number"
+                    app:boxCornerRadiusBottomEnd="14dp"
+                    app:boxCornerRadiusBottomStart="14dp"
+                    app:boxCornerRadiusTopEnd="14dp"
+                    app:boxCornerRadiusTopStart="14dp"
+                    app:boxStrokeColor="@color/primary"
+                    app:helperText="Default country code is +91 (India)"
+                    app:helperTextColor="@color/text_muted"
+                    app:prefixText="+91 "
+                    app:prefixTextColor="@color/primary">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:letterSpacing="0.05"
+                        android:maxLength="10"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Loading Indicator -->
+                <LinearLayout
+                    android:id="@+id/layoutLoading"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="You can configure test phone numbers in the Firebase Console (Authentication > Sign-in method > Phone > Phone numbers for testing) or test on devices with active cellular SIMs."
-                    android:textColor="@color/text_secondary"
-                    android:textSize="11sp" />
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:indeterminateTint="@color/primary" />
+
+                    <TextView
+                        android:id="@+id/tvLoadingMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Contacting Firebase verification servers..."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- Send OTP Action Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSendOtp"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="20dp"
+                    android:letterSpacing="0.02"
+                    android:text="Send Verification Code"
+                    android:textColor="@color/surface_light"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/primary"
+                    app:cornerRadius="14dp" />
+
+                <!-- Quick Test Login -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnQuickTestLogin"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/quick_test_login"
+                    android:textColor="@color/primary"
+                    android:textSize="13sp" />
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <!-- Trust Badges Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_check"
+                app:tint="@color/safety_green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Privacy Guaranteed"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:text="•"
+                android:textColor="@color/text_muted" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_shield_check"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Consent Protected"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

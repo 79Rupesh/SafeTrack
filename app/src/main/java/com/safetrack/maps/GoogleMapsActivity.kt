@@ -235,7 +235,7 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .snippet("SafeTrack Live Location")
                 .icon(
                     if (isSos) BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
-                    else BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)
+                    else BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
                 )
             currentMarker = map.addMarker(markerOptions)
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
@@ -247,8 +247,8 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // 2. Accuracy circle update
         accuracyCircle?.remove()
         if (location.accuracy > 0) {
-            val circleColor = if (isSos) Color.argb(40, 211, 47, 47) else Color.argb(40, 98, 0, 238)
-            val strokeColor = if (isSos) Color.argb(120, 211, 47, 47) else Color.argb(120, 98, 0, 238)
+            val circleColor = if (isSos) Color.argb(40, 239, 68, 68) else Color.argb(40, 79, 70, 229)
+            val strokeColor = if (isSos) Color.argb(140, 220, 38, 38) else Color.argb(140, 67, 56, 202)
             accuracyCircle = map.addCircle(
                 CircleOptions()
                     .center(latLng)
@@ -280,15 +280,17 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val sdf = SimpleDateFormat("dd MMM yyyy, hh:mm:ss a", Locale.getDefault())
         binding.tvLastUpdated.text = "Updated: $relative (${sdf.format(Date(location.timestamp))})"
 
-        // 5. Accuracy, Altitude, Speed & Battery Details
-        val speedStr = if (location.speed > 0f) String.format(Locale.US, " • Speed: %.1f km/h", location.speed * 3.6f) else ""
-        val altitudeStr = if (location.altitude != 0.0) String.format(Locale.US, " • Alt: %.0fm", location.altitude) else ""
-        val batteryStr = if (location.batteryPct >= 0) " • Battery: ${location.batteryPct}%" else ""
+        // 5. Accuracy, Altitude, Speed, Battery & Exact Coordinates Details
+        val speedStr = if (location.speed > 0f) String.format(Locale.US, " • 🚗 %.1f km/h", location.speed * 3.6f) else " • 🚗 Stationary"
+        val altitudeStr = if (location.altitude != 0.0) String.format(Locale.US, " • ⛰ %.0fm", location.altitude) else ""
+        val batteryStr = if (location.batteryPct >= 0) " • ⚡ ${location.batteryPct}%" else ""
         val approxNotice = if (location.isApproximate) " (Approximate)" else ""
 
         binding.tvAccuracyAndBattery.text = String.format(
             Locale.US,
-            "Accuracy: ±%.1fm%s%s%s%s",
+            "📍 %.5f, %.5f (±%.1fm)%s%s%s%s",
+            location.latitude,
+            location.longitude,
             location.accuracy,
             approxNotice,
             speedStr,

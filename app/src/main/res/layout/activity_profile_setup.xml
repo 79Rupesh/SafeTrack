@@ -10,20 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="22dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="24dp">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_shield"
-            app:tint="@color/primary" />
+            android:background="@drawable/bg_stat_card">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_avatar_default"
+                app:tint="@color/primary" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Create Your Profile"
+            android:layout_marginTop="18dp"
+            android:letterSpacing="0.01"
+            android:text="Create Safety Profile"
             android:textColor="@color/text_primary"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -32,7 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Tell your trusted contacts who you are. This information is only shared with approved contacts."
+            android:lineSpacingExtra="2dp"
+            android:text="Set up your profile identity. This name and emergency information is only visible to your approved guardians."
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
@@ -40,22 +51,23 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="12dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/safety_green"
-            app:strokeWidth="1dp">
+            app:strokeColor="@color/safety_green_border"
+            app:strokeWidth="1.5dp"
+            app:cardBackgroundColor="@color/safety_green_light">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="14dp">
+                android:padding="16dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:src="@drawable/ic_check"
                     app:tint="@color/safety_green" />
 
@@ -69,8 +81,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Verified Phone Number"
-                        android:textColor="@color/safety_green"
+                        android:text="VERIFIED SECURE PHONE"
+                        android:textColor="@color/safety_green_dark"
                         android:textSize="11sp"
                         android:textStyle="bold" />
 
@@ -81,72 +93,99 @@
                         android:layout_marginTop="2dp"
                         android:text="+91 XXXXXXXXXX"
                         android:textColor="@color/text_primary"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Full Name Input Field -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilFullName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Full Name"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:helperText="Enter your legal or familiar name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName|textCapWords"
-                android:maxLength="40"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Primary Emergency Contact Phone (Optional) -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmergencyPhone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <!-- Profile Input Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Primary Emergency Contact (Optional)"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:helperText="Mobile number to receive offline emergency SMS during SOS">
+            app:cardCornerRadius="18dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/card_stroke"
+            app:strokeWidth="1dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmergencyPhone"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:maxLength="15"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Full Name Input Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFullName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    app:boxCornerRadiusBottomEnd="14dp"
+                    app:boxCornerRadiusBottomStart="14dp"
+                    app:boxCornerRadiusTopEnd="14dp"
+                    app:boxCornerRadiusTopStart="14dp"
+                    app:boxStrokeColor="@color/primary"
+                    app:helperText="Enter your display name for family &amp; contacts"
+                    app:helperTextColor="@color/text_muted">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="40"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Primary Emergency Contact Phone (Optional) -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmergencyPhone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Emergency Contact Number (Optional)"
+                    app:boxCornerRadiusBottomEnd="14dp"
+                    app:boxCornerRadiusBottomStart="14dp"
+                    app:boxCornerRadiusTopEnd="14dp"
+                    app:boxCornerRadiusTopStart="14dp"
+                    app:boxStrokeColor="@color/primary"
+                    app:helperText="Receives offline SOS SMS alerts directly"
+                    app:helperTextColor="@color/text_muted">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmergencyPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="15"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Selected Role Display Card with Edit Action -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="1dp">
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="1dp"
+            app:strokeColor="@color/card_stroke"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="14dp">
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -157,9 +196,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Active Role"
+                        android:text="Selected Profile Role"
                         android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvDisplayRole"
@@ -177,7 +216,9 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Change" />
+                    android:text="Change"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -192,8 +233,8 @@
             android:visibility="gone">
 
             <ProgressBar
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:indeterminateTint="@color/primary" />
 
             <TextView
@@ -214,13 +255,16 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSaveProfile"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="54dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="16dp"
-            android:text="Save &amp; Continue"
-            android:textSize="16sp"
+            android:letterSpacing="0.02"
+            android:text="Save &amp; Enter Dashboard"
+            android:textColor="@color/surface_light"
+            android:textSize="15sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp" />
+            app:backgroundTint="@color/primary"
+            app:cornerRadius="16dp" />
 
     </LinearLayout>
 </ScrollView>

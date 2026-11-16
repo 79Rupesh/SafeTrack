@@ -2,7 +2,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
 
     <!-- Fragment container for Google Maps SupportMapFragment -->
     <androidx.fragment.app.FragmentContainerView
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Top Container: Toolbar & Multiple Approved Contacts Chips -->
+    <!-- Top Floating Header Container: Toolbar & Multiple Approved Contacts Chips -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,22 +22,31 @@
         android:paddingTop="16dp"
         android:paddingEnd="16dp">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/bg_rounded_card"
-            android:elevation="6dp"
-            app:navigationIcon="@drawable/ic_close"
-            app:title="@string/map_title"
-            app:titleTextColor="@color/text_primary" />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/card_stroke"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/surface_light">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_close"
+                app:navigationIconTint="@color/text_primary"
+                app:title="@string/map_title"
+                app:titleTextColor="@color/text_primary" />
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Horizontal scroll of approved contacts chips -->
         <HorizontalScrollView
             android:id="@+id/scrollMapContacts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:scrollbars="none">
 
             <com.google.android.material.chip.ChipGroup
@@ -58,15 +68,15 @@
         android:layout_marginEnd="16dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/safety_amber_light"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="16dp"
         app:cardElevation="6dp"
-        app:strokeColor="@color/safety_amber"
+        app:strokeColor="@color/safety_amber_border"
         app:strokeWidth="1dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
+            android:padding="16dp"
             android:text="@string/maps_api_key_missing_msg"
             android:textColor="@color/text_primary"
             android:textSize="13sp" />
@@ -78,15 +88,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="10dp"
+        app:strokeColor="@color/card_stroke"
+        app:strokeWidth="1dp"
+        app:cardBackgroundColor="@color/surface_light">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,28 +109,57 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvFriendName"
+                <FrameLayout
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_stat_card">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_avatar_default"
+                        app:tint="@color/primary" />
+                </FrameLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:layout_weight="1"
-                    android:text="Friend Name"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvFriendName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Friend Name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAccuracyAndBattery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Accuracy: ±8.5m • Battery: 85%"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
                 <!-- Live / Last Known / Offline Status Badge -->
                 <TextView
                     android:id="@+id/tvStatusBadge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_status_badge"
-                    android:paddingStart="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="4dp"
+                    android:background="@drawable/bg_pill_live"
+                    android:paddingStart="12dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="5dp"
                     android:text="@string/status_live"
-                    android:textColor="@color/safety_green"
+                    android:textColor="@color/pill_active_text"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -124,50 +168,51 @@
                 android:id="@+id/tvLastUpdated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_stat_card"
+                android:paddingStart="12dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="8dp"
                 android:text="Last Updated: Waiting for location..."
                 android:textColor="@color/text_secondary"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/tvAccuracyAndBattery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Accuracy: ±8.5m • Battery: 85%"
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <!-- SOS Call Actions (shown only during emergency SOS) -->
             <LinearLayout
                 android:id="@+id/layoutSosCallActions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="14dp"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCallFriendMap"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="6dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/safety_red"
+                    android:backgroundTint="@color/safety_red_dark"
                     android:text="Call Friend"
-                    app:cornerRadius="8dp"
+                    android:textColor="@color/surface_light"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp"
                     app:icon="@drawable/ic_phone" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCallPoliceMap"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="6dp"
                     android:layout_weight="1"
                     android:text="Call 112"
                     android:textColor="@color/safety_red"
-                    app:cornerRadius="8dp"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp"
                     app:icon="@drawable/ic_phone"
                     app:strokeColor="@color/safety_red" />
             </LinearLayout>
@@ -175,28 +220,36 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="14dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRefreshLocation"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="6dp"
                     android:layout_weight="1"
                     android:text="@string/btn_refresh_location"
-                    app:cornerRadius="8dp"
-                    app:icon="@drawable/ic_refresh" />
+                    android:textColor="@color/primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_refresh"
+                    app:strokeColor="@color/primary" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnOpenDirections"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="6dp"
                     android:layout_weight="1"
                     android:text="@string/btn_directions"
-                    app:cornerRadius="8dp"
+                    android:textColor="@color/surface_light"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/primary"
+                    app:cornerRadius="12dp"
                     app:icon="@drawable/ic_directions" />
             </LinearLayout>
 

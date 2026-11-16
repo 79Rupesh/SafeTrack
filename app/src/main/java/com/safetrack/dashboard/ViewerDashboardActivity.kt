@@ -191,10 +191,10 @@ class ViewerDashboardActivity : AppCompatActivity() {
             contactsList.addAll(contacts)
 
             if (contacts.isEmpty()) {
-                binding.tvEmptyFriends.visibility = View.VISIBLE
+                binding.cardEmptyState.visibility = View.VISIBLE
                 binding.rvFriends.visibility = View.GONE
             } else {
-                binding.tvEmptyFriends.visibility = View.GONE
+                binding.cardEmptyState.visibility = View.GONE
                 binding.rvFriends.visibility = View.VISIBLE
 
                 // Stream location updates for each friend

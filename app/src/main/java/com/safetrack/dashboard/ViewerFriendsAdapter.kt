@@ -56,27 +56,33 @@ class ViewerFriendsAdapter(
 
                 if (location.sharingStatus == LocationData.STATUS_PAUSED) {
                     binding.tvViewerFriendStatusBadge.text = "PAUSED"
+                    binding.tvViewerFriendStatusBadge.setBackgroundResource(R.drawable.bg_pill_paused)
                     binding.tvViewerFriendStatusBadge.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.safety_amber)
+                        ContextCompat.getColor(itemView.context, R.color.pill_paused_text)
                     )
                 } else if (diffMinutes > 15) {
                     binding.tvViewerFriendStatusBadge.text = "OFFLINE"
+                    binding.tvViewerFriendStatusBadge.setBackgroundResource(R.drawable.bg_stat_card)
                     binding.tvViewerFriendStatusBadge.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.text_hint)
+                        ContextCompat.getColor(itemView.context, R.color.text_secondary)
                     )
                 } else {
                     binding.tvViewerFriendStatusBadge.text = "LIVE"
+                    binding.tvViewerFriendStatusBadge.setBackgroundResource(R.drawable.bg_pill_live)
                     binding.tvViewerFriendStatusBadge.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.safety_green)
+                        ContextCompat.getColor(itemView.context, R.color.pill_active_text)
                     )
                 }
 
                 val sdf = SimpleDateFormat("dd MMM, hh:mm a", Locale.getDefault())
                 val timeStr = sdf.format(Date(location.timestamp))
-                val batteryStr = if (location.batteryPct >= 0) " • Battery: ${location.batteryPct}%" else ""
-                binding.tvViewerLastUpdate.text = "Last updated: $timeStr$batteryStr"
+                val batteryStr = if (location.batteryPct >= 0) " • ⚡ ${location.batteryPct}%" else ""
+                val speedStr = if (location.speed > 0f) String.format(Locale.US, " • 🚗 %.1f km/h", location.speed * 3.6f) else " • 🚗 Stationary"
+                val accStr = if (location.accuracy > 0) String.format(Locale.US, " • 📍 ±%.1fm", location.accuracy) else ""
+                binding.tvViewerLastUpdate.text = "$timeStr$batteryStr$speedStr$accStr"
             } else {
                 binding.tvViewerFriendStatusBadge.text = "WAITING"
+                binding.tvViewerFriendStatusBadge.setBackgroundResource(R.drawable.bg_stat_card)
                 binding.tvViewerFriendStatusBadge.setTextColor(
                     ContextCompat.getColor(itemView.context, R.color.text_hint)
                 )

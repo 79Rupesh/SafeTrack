@@ -1,35 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand Primary Colors (Safety Indigo / Magenta / Alert Red) -->
-    <color name="primary">#6200EE</color>
-    <color name="primary_variant">#3700B3</color>
-    <color name="primary_light">#EDE7F6</color>
-    <color name="secondary">#03DAC6</color>
-    <color name="secondary_variant">#018786</color>
+    <!-- Brand Primary Colors - Deep Royal Indigo & Electric Blue -->
+    <color name="primary">#4F46E5</color>
+    <color name="primary_dark">#3730A3</color>
+    <color name="primary_variant">#312E81</color>
+    <color name="primary_light">#EEF2FF</color>
+    <color name="primary_gradient_start">#4338CA</color>
+    <color name="primary_gradient_end">#6366F1</color>
+
+    <!-- Accent & Secondary -->
+    <color name="secondary">#0EA5E9</color>
+    <color name="secondary_variant">#0284C7</color>
+    <color name="secondary_light">#E0F2FE</color>
+    <color name="accent_cyan">#06B6D4</color>
 
     <!-- Safety / Status Colors -->
-    <color name="safety_red">#D32F2F</color>
-    <color name="safety_red_dark">#B71C1C</color>
-    <color name="safety_red_light">#FFEBEE</color>
-    <color name="safety_green">#2E7D32</color>
-    <color name="safety_green_light">#E8F5E9</color>
-    <color name="safety_amber">#ED6C02</color>
-    <color name="safety_amber_light">#FFF4E5</color>
+    <color name="safety_red">#EF4444</color>
+    <color name="safety_red_dark">#DC2626</color>
+    <color name="safety_red_light">#FEF2F2</color>
+    <color name="safety_red_border">#FECACA</color>
+    
+    <color name="safety_green">#10B981</color>
+    <color name="safety_green_dark">#059669</color>
+    <color name="safety_green_light">#ECFDF5</color>
+    <color name="safety_green_border">#A7F3D0</color>
+
+    <color name="safety_amber">#F59E0B</color>
+    <color name="safety_amber_dark">#D97706</color>
+    <color name="safety_amber_light">#FFFBEB</color>
+    <color name="safety_amber_border">#FDE68A</color>
 
     <!-- Neutral Background & Surface -->
-    <color name="background_light">#F8F9FA</color>
+    <color name="background_light">#F8FAFC</color>
     <color name="surface_light">#FFFFFF</color>
+    <color name="surface_elevated">#FFFFFF</color>
     <color name="card_background">#FFFFFF</color>
+    <color name="card_stroke">#E2E8F0</color>
 
-    <color name="text_primary">#1C1B1F</color>
-    <color name="text_secondary">#49454F</color>
-    <color name="text_hint">#79747E</color>
-    <color name="divider_color">#E0E0E0</color>
-    <color name="divider">#E0E0E0</color>
+    <!-- Typography -->
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_muted">#94A3B8</color>
+    <color name="text_hint">#94A3B8</color>
+    <color name="divider_color">#E2E8F0</color>
+    <color name="divider">#F1F5F9</color>
 
-    <!-- Dark Mode Neutral -->
-    <color name="background_dark">#121212</color>
-    <color name="surface_dark">#1E1E1E</color>
-    <color name="text_primary_dark">#E6E1E5</color>
-    <color name="text_secondary_dark">#CAC4D0</color>
+    <!-- Modern Status Pills -->
+    <color name="pill_active_bg">#DCFCE7</color>
+    <color name="pill_active_text">#15803D</color>
+    <color name="pill_alert_bg">#FEE2E2</color>
+    <color name="pill_alert_text">#B91C1C</color>
+    <color name="pill_paused_bg">#FEF3C7</color>
+    <color name="pill_paused_text">#B45309</color>
+    <color name="stat_card_bg">#F1F5F9</color>
+    <color name="tile_hover_bg">#F8FAFC</color>
+
+    <!-- Dark Mode Support -->
+    <color name="background_dark">#0F172A</color>
+    <color name="surface_dark">#1E293B</color>
+    <color name="surface_dark_elevated">#334155</color>
+    <color name="text_primary_dark">#F8FAFC</color>
+    <color name="text_secondary_dark">#94A3B8</color>
 </resources>

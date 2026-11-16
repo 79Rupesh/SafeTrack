@@ -4,46 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="14dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="18dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/card_stroke"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="18dp">
 
-        <TextView
-            android:id="@+id/tvRequesterName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Requester Name"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvRequesterPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="+91 XXXXXXXXXX"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp" />
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_stat_card">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_avatar_default"
+                    app:tint="@color/primary" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvRequesterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Requester Name"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvRequesterPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="+91 XXXXXXXXXX"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvRequestTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_stat_card"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
             android:text="Wants to connect with you for mutual safety"
             android:textColor="@color/primary"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
@@ -53,9 +89,11 @@
                 android:layout_height="48dp"
                 android:layout_marginEnd="6dp"
                 android:layout_weight="1"
-                android:text="Reject"
+                android:text="Decline"
                 android:textColor="@color/safety_red"
-                app:cornerRadius="8dp"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
                 app:strokeColor="@color/safety_red" />
 
             <com.google.android.material.button.MaterialButton
@@ -65,8 +103,11 @@
                 android:layout_marginStart="6dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/safety_green"
-                android:text="Approve"
-                app:cornerRadius="8dp" />
+                android:text="Accept"
+                android:textColor="@color/surface_light"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
         </LinearLayout>
 
     </LinearLayout>

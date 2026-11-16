@@ -4,8 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.hardware.camera2.CameraManager
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.net.Uri
 import android.os.BatteryManager
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Vibrator
@@ -33,6 +37,9 @@ class SosActivity : AppCompatActivity() {
 
     private var holdTimer: CountDownTimer? = null
     private var isHolding = false
+    private var toneGenerator: ToneGenerator? = null
+    private var isSirenPlaying = false
+    private var isTorchOn = false
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +66,79 @@ class SosActivity : AppCompatActivity() {
 
         binding.btnCancelSos.setOnClickListener {
             confirmCancelSos()
+        }
+
+        binding.btnToggleSiren.setOnClickListener {
+            toggleSiren()
+        }
+
+        binding.btnToggleTorch.setOnClickListener {
+            toggleTorch()
+        }
+    }
+
+    private fun toggleSiren() {
+        if (isSirenPlaying) {
+            stopSiren()
+        } else {
+            startSiren()
+        }
+    }
+
+    private fun startSiren() {
+        try {
+            isSirenPlaying = true
+            binding.btnToggleSiren.text = "Stop Siren"
+            toneGenerator = ToneGenerator(AudioManager.STREAM_ALARM, 100)
+            toneGenerator?.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK, 20000)
+            Toast.makeText(this, "Emergency siren sounding!", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(this, "Audio alarm unavailable", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun stopSiren() {
+        isSirenPlaying = false
+        binding.btnToggleSiren.text = "Loud Siren"
+        try {
+            toneGenerator?.stopTone()
+            toneGenerator?.release()
+            toneGenerator = null
+        } catch (e: Exception) {
+            // Ignore
+        }
+    }
+
+    private fun toggleTorch() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                val cameraManager = getSystemService(Context.CAMERA_SERVICE) as? CameraManager
+                val cameraId = cameraManager?.cameraIdList?.firstOrNull()
+                if (cameraId != null) {
+                    isTorchOn = !isTorchOn
+                    cameraManager.setTorchMode(cameraId, isTorchOn)
+                    binding.btnToggleTorch.text = if (isTorchOn) "Torch ON" else "Flashlight"
+                    Toast.makeText(this, if (isTorchOn) "Emergency flashlight ON" else "Flashlight OFF", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this, "Flashlight not supported", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopSiren()
+        if (isTorchOn && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                val cameraManager = getSystemService(Context.CAMERA_SERVICE) as? CameraManager
+                val cameraId = cameraManager?.cameraIdList?.firstOrNull()
+                if (cameraId != null) {
+                    cameraManager.setTorchMode(cameraId, false)
+                }
+            } catch (e: Exception) {
+                // Ignore
+            }
         }
     }
 

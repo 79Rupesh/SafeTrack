@@ -10,22 +10,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="24dp"
+        android:paddingTop="36dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="28dp">
 
-        <ImageView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/ic_shield"
-            app:tint="@color/primary" />
+        <FrameLayout
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center_horizontal">
+
+            <View
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/bg_sos_ring_outer"
+                android:backgroundTint="#154F46E5" />
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_shield_check"
+                app:tint="@color/primary" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="Verify Code"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.01"
+            android:text="Verify Security Code"
             android:textColor="@color/text_primary"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -35,95 +50,122 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
+            android:lineSpacingExtra="2dp"
             android:text="Enter the 6-digit code sent to your phone"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
-        <!-- 6-Digit OTP Field -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilOtp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <!-- Verification Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="6-Digit OTP"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:helperText="Enter the code received via SMS">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/card_stroke"
+            app:strokeWidth="1dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etOtp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:inputType="number"
-                android:letterSpacing="0.4"
-                android:maxLength="6"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        <!-- Loading State -->
-        <LinearLayout
-            android:id="@+id/layoutVerifying"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
+                <!-- 6-Digit OTP Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilOtp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="6-Digit OTP"
+                    app:boxCornerRadiusBottomEnd="14dp"
+                    app:boxCornerRadiusBottomStart="14dp"
+                    app:boxCornerRadiusTopEnd="14dp"
+                    app:boxCornerRadiusTopStart="14dp"
+                    app:boxStrokeColor="@color/primary"
+                    app:helperText="Enter the 6-digit verification PIN"
+                    app:helperTextColor="@color/text_muted">
 
-            <ProgressBar
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:indeterminateTint="@color/primary" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etOtp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:letterSpacing="0.3"
+                        android:maxLength="6"
+                        android:textColor="@color/text_primary"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tvVerifyingMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="Verifying credentials with Firebase..."
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp" />
-        </LinearLayout>
+                <!-- Loading State -->
+                <LinearLayout
+                    android:id="@+id/layoutVerifying"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
-        <!-- Verification Action Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnVerifyOtp"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="28dp"
-            android:text="Verify &amp; Continue"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
+                    <ProgressBar
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:indeterminateTint="@color/primary" />
 
-        <!-- Resend OTP Button with Cooldown Countdown -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnResendOtp"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:enabled="false"
-            android:text="Resend Code in 60s"
-            android:textColor="@color/primary" />
+                    <TextView
+                        android:id="@+id/tvVerifyingMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Verifying credentials with Firebase..."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChangeNumber"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp"
-            android:text="Change Phone Number"
-            android:textColor="@color/text_secondary" />
+                <!-- Verification Action Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVerifyOtp"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="20dp"
+                    android:letterSpacing="0.02"
+                    android:text="Verify &amp; Continue"
+                    android:textColor="@color/surface_light"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/primary"
+                    app:cornerRadius="14dp" />
+
+                <!-- Resend OTP Button with Cooldown Countdown -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnResendOtp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:enabled="false"
+                    android:text="Resend Code in 60s"
+                    android:textColor="@color/primary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnChangeNumber"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:text="Change Phone Number"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 </ScrollView>

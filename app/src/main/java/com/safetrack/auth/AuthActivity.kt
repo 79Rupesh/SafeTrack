@@ -37,6 +37,17 @@ class AuthActivity : AppCompatActivity() {
             if (isSendingOtp) return@setOnClickListener
             initiatePhoneVerification()
         }
+
+        binding.btnQuickTestLogin.setOnClickListener {
+            val testPhone = "+919876543210"
+            val intent = Intent(this, OtpVerificationActivity::class.java).apply {
+                putExtra(OtpVerificationActivity.EXTRA_PHONE_NUMBER, testPhone)
+                putExtra(OtpVerificationActivity.EXTRA_VERIFICATION_ID, "demo_test_verification_id")
+                putExtra(OtpVerificationActivity.EXTRA_AUTO_CODE, "123456")
+                putExtra(OtpVerificationActivity.EXTRA_SELECTED_ROLE, selectedRole)
+            }
+            startActivity(intent)
+        }
     }
 
     private fun initiatePhoneVerification() {

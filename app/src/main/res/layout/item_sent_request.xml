@@ -4,14 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="14dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="18dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/card_stroke"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="18dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,9 +21,23 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_stat_card">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_avatar_default"
+                    app:tint="@color/primary" />
+            </FrameLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -48,13 +64,13 @@
                 android:id="@+id/tvSentStatusBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_status_badge"
-                android:paddingStart="8dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="3dp"
+                android:background="@drawable/bg_pill_paused"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
                 android:text="PENDING"
-                android:textColor="@color/safety_amber"
+                android:textColor="@color/pill_paused_text"
                 android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -63,15 +79,20 @@
             android:id="@+id/tvSentRequestTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_stat_card"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
             android:text="Sent: Just now"
-            android:textColor="@color/text_hint"
+            android:textColor="@color/text_secondary"
             android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:gravity="end"
             android:orientation="horizontal">
 
@@ -79,10 +100,12 @@
                 android:id="@+id/btnCancelSentRequest"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:text="Cancel Request"
                 android:textColor="@color/safety_red"
-                app:cornerRadius="8dp"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
                 app:strokeColor="@color/safety_red" />
         </LinearLayout>
 

@@ -259,6 +259,8 @@ class LocationTrackingService : Service() {
                 putExtra(EXTRA_LATITUDE, location.latitude)
                 putExtra(EXTRA_LONGITUDE, location.longitude)
                 putExtra(EXTRA_ACCURACY, location.accuracy)
+                putExtra(EXTRA_SPEED, location.speed)
+                putExtra(EXTRA_BATTERY, batteryPct)
                 putExtra(EXTRA_TIMESTAMP, location.time)
                 putExtra(EXTRA_UPLOAD_SUCCESS, uploadSuccess)
                 putExtra(EXTRA_LAST_UPLOAD_TIME, sessionManager.lastUploadTime)
@@ -403,6 +405,8 @@ class LocationTrackingService : Service() {
         const val EXTRA_LATITUDE = "extra_latitude"
         const val EXTRA_LONGITUDE = "extra_longitude"
         const val EXTRA_ACCURACY = "extra_accuracy"
+        const val EXTRA_SPEED = "extra_speed"
+        const val EXTRA_BATTERY = "extra_battery"
         const val EXTRA_TIMESTAMP = "extra_timestamp"
         const val EXTRA_SHARING_STATUS = "extra_sharing_status"
         const val EXTRA_UPLOAD_SUCCESS = "extra_upload_success"

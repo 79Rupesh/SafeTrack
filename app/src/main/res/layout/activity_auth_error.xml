@@ -39,10 +39,15 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRetryAuth"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="54dp"
         android:layout_marginTop="32dp"
+        android:backgroundTint="@color/primary"
+        android:letterSpacing="0.02"
         android:text="Try Again"
-        app:cornerRadius="10dp" />
+        android:textColor="@color/surface_light"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="14dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBackToLogin"
